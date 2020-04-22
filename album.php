@@ -1,6 +1,6 @@
 <?php
 // Create connection
-$conn=mysqli_connect("118.25.5.174","liutengfei","ltf107834","i308_dataset");
+$conn=mysqli_connect("xxxxx","xxxxx","xxxxx","i308_dataset");
 
 // Check connection
 if (!$conn) {
