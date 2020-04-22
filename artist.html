@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<body>
+<h2>Artist Table</h2>
+<h3>Insert a new Artist</h3>
+<form action="insertartist.php" method="POST">
+Title: <input type="text" name="title" maxlength=500 size=50 required><br><br>
+Band: <select name='bid'>
+<option value="87">No thank you</option>
+<option value="88">No thank you</option>
+<option value="82">test3</option><option value="99">ybnl</option>
+<option value="112">yes</option><option value="114">yoyo</option> 
+    </select>
+</br><br></br><br></br><br></br><br>
+Published Year: <input type="number" name="pyear" min="1900" max="2020" required><br><br>
+Publisher: <input type="text" name="title" maxlength=500 size=50 required><br><br>
+Format: <select name="format">
+    <option value=Album"/ >Album</option>
+    <option value="CD">CD</option>
+    <option value="WAV">WAV</option>
+    <option value="MP3">MP3</option>
+  </select><br><br>
+<input type="submit" value="Insert Artist">
+</form>
+<h3>Select all Artist</h3>
+<form action="selectartist.php" method="post">
+<input type="submit" name="submit" value="Select Artist table">
+</form>
+</body>
+</html>
+
