@@ -7,6 +7,15 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error() . "<br>");
 }
 
+// Create SQL Statement
+$sql = "SELECT * from band12 ";
+
+// Get Results
+$result = mysqli_query($conn, $sql);
+
+// Get Number of Rows
+$num_rows = mysqli_num_rows($result);
+
 ?>
 
 <!doctype html>
@@ -16,13 +25,15 @@ if (!$conn) {
 <h3>Insert a new Album</h3>
 <form action="insertalbum.php" method="POST">
     Title: <input type="text" name="form_title" maxlength=500 size=50 required><br><br>
-    Band: <select name='bid'>
-             <option value="105"></option>
+    Band: <select name='form_band_id' required>
+        <?php while($row = $result->fetch_assoc()) { ?>
+             <option value="<?php echo $row['id'];?>"><?php echo $row['title'];?></option>
+        <?php } ?>
           </select>
     </br><br>
-    Published Year: <input type="number" name="form_pyear" min="1900" max="2025" required><br><br>
-    Publisher: <input type="text" name="form_title" maxlength=500 size=50 required><br><br>
-    Format: <select name="form_format">
+    Published Year: <input type="number" name="form_pub_year" min="1900" max="2025" required><br><br>
+    Publisher: <input type="text" name="form_publisher" maxlength=500 size=50 required><br><br>
+    Format: <select name="form_media" required>
         <option value=Album"/ >Album</option>
         <option value="CD">CD</option>
         <option value="WAV">WAV</option>

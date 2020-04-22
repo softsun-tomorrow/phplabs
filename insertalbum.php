@@ -9,30 +9,30 @@ if (!$conn) {
 
 // Grab POST Data
 //escape variables for security sql injection
-$fname = mysqli_real_escape_string($conn, $_POST['form_title']);
-$lname = mysqli_real_escape_string($conn, $_POST['form_lname']);
-$dob = mysqli_real_escape_string($conn, $_POST['form_dob']);
-$hometown = mysqli_real_escape_string($conn, $_POST['form_hometown']);
-$gender = mysqli_real_escape_string($conn, $_POST['form_gender']);
+$title = mysqli_real_escape_string($conn, $_POST['form_title']);
+$pub_year = mysqli_real_escape_string($conn, $_POST['form_pub_year']);
+$publisher = mysqli_real_escape_string($conn, $_POST['form_publisher']);
+$media = mysqli_real_escape_string($conn, $_POST['form_media']);
+$band_id = mysqli_real_escape_string($conn, $_POST['form_band_id']);
 
 
-if($fname){
-    $where = "where fname = '".$fname."' and lname = '".$lname."' ";
+if($title){
+    $where = "where title = '".$title."' ";
 }else{
     $where = '';
 }
 
-$sql = "SELECT * from artist12 ".$where;
+$sql = "SELECT * from album12 ".$where;
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 if ($num_rows > 0) {
-    echo "The First Name and Last Name already exists<br>";
+    echo "The title already exists<br>";
     // Close Connection
     mysqli_close($conn);
     exit;
 }
 //Insert query to insert form data into the band table
-$sql = "INSERT INTO artist12 (fname, lname, dob, hometown, gender) VALUES ('$fname','$lname','$dob','$hometown','$gender')";
+$sql = "INSERT INTO album12 (title, pub_year, publisher, media, band_id) VALUES ('$title','$pub_year','$publisher','$media','$band_id')";
 //check for error on insert
 if (!mysqli_query($conn,$sql)) {
     die('Error: ' . mysqli_error($conn)) . "<br>";
@@ -44,14 +44,14 @@ echo "Artist Added <br><br><br><br>";
 
 
 
-if($fname){
-    $where = "where fname = '".$fname."' and lname = '".$lname."' ";
+if($title){
+    $where = "where title = '".$title."' ";
 }else{
     $where = '';
 }
 
 // Create SQL Statement
-$sql = "SELECT * from artist12 ".$where;
+$sql = "SELECT * from album12 ".$where;
 
 // Get Results
 $result = mysqli_query($conn, $sql);
@@ -62,11 +62,11 @@ $num_rows = mysqli_num_rows($result);
 // Display Results
 if ($num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Dob</th><th>Hometown</th><th>gender</th></tr>";
+    echo "<tr><th>ID</th><th>Title</th><th>Published Year</th><th>Publisher</th><th>Format</th><th>Band</th></tr>";
 // Output data of each row, ->fetch_assoc gives array of arrays with keys matching column names
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>".$row["id"]."</td><td>".$row["fname"]."</td><td>".$row["lname"]."</td>
-<td>".$row["dob"]."</td><td>".$row["hometown"]."</td><td>".$row["gender"]."</td></tr>";
+        echo "<tr><td>".$row["id"]."</td><td>".$row["title"]."</td><td>".$row["pub_year"]."</td>
+<td>".$row["publisher"]."</td><td>".$row["media"]."</td><td>".$row["band_id"]."</td></tr>";
     }
     echo "</table>";
 } else {
