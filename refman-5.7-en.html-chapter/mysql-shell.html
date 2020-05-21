@@ -1,0 +1,2784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Chapter 18 MySQL Shell User Guide</title>
+<link rel="stylesheet" href="mvl.css" type="text/css" />
+<meta name="generator" content="DocBook XSL Stylesheets + chunker.py v1.9.2" />
+<link rel="start" href="index.html" title="{book-title}" />
+<link rel="up" href="" title="" />
+<link rel="prev" href="group-replication.html" title="Chapter 17 Group Replication" />
+<link rel="next" href="document-store.html" title="Chapter 19 Using MySQL as a Document Store" />
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr>
+<th colspan="3" align="center">Chapter 18 MySQL Shell User Guide</th>
+</tr>
+<tr>
+<td width="20%" align="left"><a accesskey="p" href="group-replication.html">Prev</a> </td>
+<th width="60%" align="center"></th>
+<td width="20%" align="right"> <a accesskey="n" href="document-store.html">Next</a></td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="en" class="chapter">
+<div class="titlepage">
+<div>
+<div>
+<h1 class="title"><a name="mysql-shell"></a>Chapter 18 MySQL Shell User Guide</h1>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<p><b>Table of Contents</b></p><dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-features">18.1 MySQL Shell Features</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-getting-started">18.2 Getting Started with MySQL Shell</a></span></dt><dd><dl><dt><span class="section"><a href="mysql-shell.html#mysql-shell-connections">18.2.1 MySQL Shell Connections</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-sessions">18.2.2 MySQL Shell Sessions</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-global-variables">18.2.3 MySQL Shell Global Variables</a></span></dt></dl></dd><dt><span class="section"><a href="mysql-shell.html#mysql-shell-code-execution">18.3 MySQL Shell Code Execution</a></span></dt><dd><dl><dt><span class="section"><a href="mysql-shell.html#mysql-shell-interactive-code-execution">18.3.1 Interactive Code Execution</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-batch-code-execution">18.3.2 Batch Code Execution</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-output-formats">18.3.3 Output Formats</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-active-language">18.3.4 Active Language</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-batch-mode-interactive">18.3.5 Batch Mode Made Interactive</a></span></dt></dl></dd><dt><span class="section"><a href="mysql-shell.html#mysql-shell-configuring">18.4 Configuring MySQL Shell</a></span></dt><dd><dl><dt><span class="section"><a href="mysql-shell.html#mysql-shell-commands">18.4.1 MySQL Shell Commands</a></span></dt></dl></dd><dt><span class="section"><a href="mysql-shell.html#mysql-shell-application-log">18.5 MySQL Shell Application Log</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-customizing">18.6 Customizing MySQL Shell</a></span></dt><dd><dl><dt><span class="section"><a href="mysql-shell.html#mysql-shell-creating-startup-scripts">18.6.1 Working With Start-Up Scripts</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-adding-module-search-paths">18.6.2 Adding Module Search Paths</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-overriding-the-default-prompt">18.6.3 Overriding the Default Prompt</a></span></dt></dl></dd></dl>
+</div>
+<p>
+    This section provides user documentation for MySQL Shell, an
+    advanced client and code editor for MySQL Server. In addition to the
+    provided SQL functionality, similar to <a class="link" href="programs.html#mysql" title="4.5.1 mysql — The MySQL Command-Line Tool"><span class="command"><strong>mysql</strong></span></a>,
+    MySQL Shell provides scripting capabilities for JavaScript and
+    Python and includes APIs for working with MySQL. X DevAPI
+    enables you to work with both relational and document data, see
+    <a class="xref" href="document-store.html" title="Chapter 19 Using MySQL as a Document Store">Chapter 19, <i>Using MySQL as a Document Store</i></a>. AdminAPI enables you to
+    work with InnoDB cluster, see
+    <a class="xref" href="mysql-innodb-cluster-userguide.html" title="Chapter 20 InnoDB Cluster">Chapter 20, <i>InnoDB Cluster</i></a>.
+  </p><p>
+  MySQL Shell enables you to prototype code using the X DevAPI
+  to communicate with a MySQL Server running the X Plugin. The
+  X Plugin is a new MySQL Server feature available with MySQL
+  Server 5.7.12 and higher.
+</p><p>
+  MySQL Shell is an advanced command-line client and code editor for
+  the MySQL Server. In addition to SQL, MySQL Shell also offers
+  scripting capabilities for JavaScript and Python. When MySQL Shell
+  is connected to the MySQL Server through the X Protocol, the
+  X DevAPI can be used to work with both relational and document
+  data.
+</p>
+<div class="section">
+
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both"><a name="mysql-shell-features"></a>18.1 MySQL Shell Features</h2>
+</div>
+</div>
+</div>
+<p>
+    The following features are available in MySQL Shell.
+</p>
+<div class="simplesect">
+
+<div class="titlepage">
+<div>
+
+<div class="simple">
+<h3 class="title"><a name="idm140710636219248"></a>Interactive Code Execution</h3>
+</div>
+</div>
+</div>
+<p>
+      MySQL Shell provides an interactive code execution mode, where
+      you type code at the MySQL Shell prompt and each entered
+      statement is processed, with the result of the processing printed
+      onscreen.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="idm140710636217808"></a>Supported Languages</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      MySQL Shell processes code in the following languages:
+      JavaScript, Python and SQL. Any entered code is processed as one
+      of these languages, based on the language that is currently
+      active. There are also specific MySQL Shell commands, prefixed
+      with <code class="literal">\</code>, which enable you to configure
+      MySQL Shell regardless of the currently selected language. For
+      more information see <a class="xref" href="mysql-shell.html#mysql-shell-commands" title="18.4.1 MySQL Shell Commands">Section 18.4.1, “MySQL Shell Commands”</a>.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="idm140710636214688"></a>Batch Code Execution</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      In addition to the interactive execution of code, MySQL Shell
+      can also take code from different sources and process it. This
+      method of processing code in a non-interactive way is called
+      <span class="emphasis"><em>Batch Execution</em></span>.
+    </p><p>
+      As batch execution mode is intended for script processing of a
+      single language, it is limited to having minimal non-formatted
+      output and disabling the execution of commands. To avoid these
+      limitations, use the <a class="link" href="programs.html#option_mysqlsh_interactive"><code class="option">--interactive</code></a>
+      command-line option, which tells MySQL Shell to execute the
+      input as if it were an interactive session. In this mode the input
+      is processed <span class="emphasis"><em>line by line</em></span> just as if each
+      line were typed in an interactive session. For more information
+      see <a class="xref" href="mysql-shell.html#mysql-shell-batch-mode-interactive" title="18.3.5 Batch Mode Made Interactive">Section 18.3.5, “Batch Mode Made Interactive”</a>.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="idm140710636209664"></a>Output Formats</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      MySQL Shell provides output in different formats depending on
+      how it is used: Tabbed, Table and JSON. For more information see
+      <a class="xref" href="mysql-shell.html#mysql-shell-output-formats" title="18.3.3 Output Formats">Section 18.3.3, “Output Formats”</a>.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="idm140710636207440"></a>Multiple-line Support</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      Multiple-line code can be written using a command, enabling
+      MySQL Shell to cache multiple lines and then execute them as a
+      single statement. For more information see
+      <a class="xref" href="mysql-shell.html#mysql-shell-multiple-line-support" title="18.3.5.1 Multiple-line Support">Section 18.3.5.1, “Multiple-line Support”</a>.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="idm140710636205168"></a>Application Log</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      MySQL Shell can be configured to log information about the
+      execution process. For more information see
+      <a class="xref" href="mysql-shell.html#mysql-shell-application-log" title="18.5 MySQL Shell Application Log">Section 18.5, “MySQL Shell Application Log”</a>.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="idm140710636203136"></a>Supported APIs</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      MySQL Shell includes the following APIs implemented in
+      JavaScript and Python which you can use to develop code that
+      interacts with MySQL.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          The X DevAPI enables you to work with both relational
+          and document data when MySQL Shell is connected to a MySQL
+          server using the X Protocol. For more information, see
+          <a class="xref" href="document-store.html" title="Chapter 19 Using MySQL as a Document Store">Chapter 19, <i>Using MySQL as a Document Store</i></a>. For documentation on the
+          concepts and usage of X DevAPI, see
+          <a class="ulink" href="http://dev.mysql.com/doc/x-devapi-userguide/en/" target="_top">X DevAPI User Guide</a>.
+        </p></li><li class="listitem"><p>
+          The AdminAPI enables you to work with
+          InnoDB cluster, which provides an integrated solution for
+          high availability and scalability using InnoDB based MySQL
+          databases, without requiring advanced MySQL expertise. See
+          <a class="xref" href="mysql-innodb-cluster-userguide.html" title="Chapter 20 InnoDB Cluster">Chapter 20, <i>InnoDB Cluster</i></a>.
+</p></li></ul>
+</div>
+<p>
+      For specific documentation on the implementation of the APIs see
+      <a class="ulink" href="http://dev.mysql.com/doc/dev//mysqlsh-api-javascript/1.0/" target="_top">JavaScript</a>
+      and
+      <a class="ulink" href="http://dev.mysql.com/doc/dev//mysqlsh-api-python/1.0/" target="_top">Python</a>.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="idm140710636195152"></a>X Protocol Support</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      MySQL Shell is designed to provide an integrated command-line
+      client for all MySQL products which support X Protocol. The
+      development features of MySQL Shell are designed for sessions
+      using the X Protocol. MySQL Shell can also connect to
+      MySQL Servers that do not support the X Protocol using the
+      legacy MySQL Protocol. A minimal set of features from the
+      X DevAPI are available for sessions created using the legacy
+      MySQL protocol.
+
+      
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="idm140710636192736"></a>Global Session</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      Interaction with a MySQL Server is done through a Session object.
+      For Python and JavaScript, a Session can be created through the
+      <code class="literal">getSession</code> and
+      <code class="literal">getNodeSession</code> functions of the mysqlx module.
+      If a session is created in JavaScript mode using any of these
+      methods, it is available only in JavaScript mode. The same happens
+      if the session is created in Python mode. None of these sessions
+      can be used in SQL mode.
+    </p><p>
+      For SQL Mode, the concept of Global Session is supported by the
+      MySQL Shell. A Global Session is created when the connection
+      information is passed to MySQL Shell using command-line options,
+      or by using the <code class="literal">\connect</code> command.
+    </p><p>
+      The Global Session is used to execute statements in SQL mode and
+      the same session is available in both Python or JavaScript modes.
+      When a Global Session is created, a variable called
+      <code class="literal">session</code> is set in the scripting languages, so
+      you can execute code in the different languages by switching the
+      active mode.
+    </p><p>
+      For more information, see <a class="xref" href="mysql-shell.html#mysql-shell-sessions" title="18.2.2 MySQL Shell Sessions">Section 18.2.2, “MySQL Shell Sessions”</a>.
+</p>
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both"><a name="mysql-shell-getting-started"></a>18.2 Getting Started with MySQL Shell</h2>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-connections">18.2.1 MySQL Shell Connections</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-sessions">18.2.2 MySQL Shell Sessions</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-global-variables">18.2.3 MySQL Shell Global Variables</a></span></dt></dl>
+</div>
+<p>
+    This section describes how to get started with MySQL Shell,
+    explaining how to connect to a MySQL server instance, and how to
+    choose a session type.
+</p>
+<div class="section">
+
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-connections"></a>18.2.1 MySQL Shell Connections</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-connection-using-uri">18.2.1.1 Connecting using a URI String</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-connection-using-parameters">18.2.1.2 Connecting using Individual Parameters</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-encrypted-connections">18.2.1.3 Using Encrypted Connections</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-connections-in-javascript-and-python">18.2.1.4 Connections in JavaScript and Python</a></span></dt></dl>
+</div>
+<p>
+      MySQL Shell can connect to MySQL Server using both the
+      X Protocol and the classic MySQL protocol. The address of
+      the MySQL Server which you want to connect to can be specified
+      using individual parameters, such as user, hostname and port, or
+      using a Uniform Resource Identifier (URI) type string. The
+      following sections describe these connection methods. See
+      <a class="xref" href="programs.html#connecting" title="4.2.2 Connecting to the MySQL Server">Section 4.2.2, “Connecting to the MySQL Server”</a> for more background information.
+    </p><p>
+      You can configure the MySQL server instance that MySQL Shell is
+      connected to in the following ways:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          When you start MySQL Shell using the command parameters. See
+          <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-parameters" title="18.2.1.2 Connecting using Individual Parameters">Section 18.2.1.2, “Connecting using Individual Parameters”</a>.
+        </p></li><li class="listitem"><p>
+          When MySQL Shell is running using the
+          <code class="literal">\connect</code> command. See
+          <a class="xref" href="mysql-shell.html#mysql-shell-commands" title="18.4.1 MySQL Shell Commands">Section 18.4.1, “MySQL Shell Commands”</a>.
+        </p></li><li class="listitem"><p>
+          When running Python or Java code using the
+          <code class="literal">shell.connect('<em class="replaceable"><code>instance</code></em>')</code>
+          method. See
+          <a class="ulink" href="http://dev.mysql.com/doc/dev//mysqlsh-api-javascript/8.0/" target="_top">JavaScript</a>
+          and
+          <a class="ulink" href="http://dev.mysql.com/doc/dev//mysqlsh-api-python/8.0/" target="_top">Python</a>.
+</p></li></ul>
+</div>
+<p>
+      These methods all support
+      <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-uri" title="18.2.1.1 Connecting using a URI String">Section 18.2.1.1, “Connecting using a URI String”</a>.
+</p>
+<div class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p>
+        Regardless of the method you choose to connect it is important
+        to understand how passwords are handled by MySQL Shell. By
+        default connections are assumed to require a password. The
+        password is requested at the login prompt. To specify a
+        password-less account use the
+        <a class="link" href="programs.html#option_mysqlsh_password"><code class="option">--password</code></a> option and do not
+        specify a password, or use a <code class="literal">:</code> after the
+        <code class="literal">user</code> in a URI type string and do not specify
+        a password.
+</p>
+</div>
+<p>
+      If you do not specify parameters for a connection the following
+      defaults are used:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          user defaults to the current system user name
+        </p></li><li class="listitem"><p>
+          host defaults to localhost
+        </p></li><li class="listitem"><p>
+          port defaults to the X Plugin port 33060 when using an
+          X Protocol session, and port 3306 when using a Classic
+          session
+</p></li></ul>
+</div>
+<p>
+      MySQL Shell connections using X Protocol
+      <span class="emphasis"><em>always</em></span> use TCP, using Unix sockets is not
+      supported. MySQL Shell connections using MySQL Protocol default
+      to using Unix sockets when the following conditions are met:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          A TCP port is not specified
+        </p></li><li class="listitem"><p>
+          A host name is not specified or it is equal to
+          <code class="literal">localhost</code>
+        </p></li><li class="listitem"><p>
+          A socket is provided with a path to a socket file
+        </p></li><li class="listitem"><p>
+          A classic session is specified
+</p></li></ul>
+</div>
+<p>
+      If a host name is specified but it is not
+      <code class="literal">localhost</code>, a TCP connection is established. In
+      this case, if a TCP port is not specified the default value of
+      3306 is used. If the conditions are met for a socket connection
+      but a path to a socket file is not specified then the default
+      socket is used. See <a class="xref" href="programs.html#connecting" title="4.2.2 Connecting to the MySQL Server">Section 4.2.2, “Connecting to the MySQL Server”</a>.
+</p>
+<div class="section">
+
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-connection-using-uri"></a>18.2.1.1 Connecting using a URI String</h4>
+</div>
+</div>
+</div>
+<p>
+        You can configure the MySQL Server which MySQL Shell connects
+        to by passing the connection data in URI type string format.
+        Such strings can be used with the
+        <a class="link" href="programs.html#option_mysqlsh_uri"><code class="option">--uri</code></a> command option, the
+        MySQL Shell <code class="literal">\connect</code> command, and the
+        <code class="literal">shell.connect()</code> method.
+      </p><p>
+        The URI type string should use the following format:
+      </p><pre class="programlisting">
+<em class="replaceable"><code>scheme</code></em>://[<em class="replaceable"><code>user</code></em>[:[<em class="replaceable"><code>password</code></em>]]@]<em class="replaceable"><code>target</code></em>[:<em class="replaceable"><code>port</code></em>][/<em class="replaceable"><code>schema</code></em>][?<em class="replaceable"><code>attribute1=value1&amp;attribute2=value2...</code></em>
+</pre>
+<div class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p>
+          Percent encoding must be used for reserved characters in the
+          elements of the URI type string. For example, if you specify a
+          password that includes the <code class="literal">@</code> character, the
+          character must be replaced by <code class="literal">%40</code>.
+
+          
+</p>
+</div>
+<p>
+        The elements of a URI type string for a MySQL Shell connection
+        are:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            <em class="replaceable"><code>scheme</code></em>: this element is required
+            and specifies the connection protocol to use, currently
+            either <code class="literal">mysql</code> for classic connection
+            protocol and <code class="literal">mysqlx</code> for X Protocol.
+          </p></li><li class="listitem"><p>
+            <em class="replaceable"><code>user</code></em>: this element is optional
+            and specifies the MySQL user account to be used for the
+            authentication process.
+          </p></li><li class="listitem"><p>
+            <em class="replaceable"><code>password</code></em>: this element is
+            optional and specifies the password to be used for the
+            authentication process.
+</p>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Warning
+</div>
+<p>
+              Storing the password in the URI type string is insecure
+              and not recommended.
+</p>
+</div>
+</li><li class="listitem"><p>
+            <em class="replaceable"><code>target</code></em>: this element is required
+            and specifies the server instance the connection refers to.
+            Can be either TCP connection information, a Unix socket path
+            or a Windows named-pipe. If not specified,
+            <span class="emphasis"><em>localhost</em></span> is used by default.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+                TCP connection information can be either a host name, an
+                IPv4 address, or an IPv6 address. Can include an
+                optional port number in the format
+                <code class="literal">host:port</code>, where
+                <em class="replaceable"><code>port</code></em> specifies a network port
+                which the target MySQL server is listening on for
+                connections. If not specified, 33060 is used by default
+                for X Protocol connections, and 3306 is the
+                default for classic MySQL protocol connections.
+              </p></li><li class="listitem"><p>
+                Unix socket and Windows named-pipe values are local file
+                paths. There are two ways to specify such paths, using
+                percent encoding or surrounding the path with
+                parentheses, removing the need to percent encode
+                characters such as the common directory separator
+                <code class="literal">/</code>. For example, to connect as
+                <code class="literal">root@localhost</code> using the Unix socket
+                <code class="filename">/tmp/mysqld.sock</code> either specify the
+                path using parenthesis as
+                <code class="literal">root@localhost?socket=(/tmp/mysqld.sock)</code>
+                or using percent encoding as
+                <code class="literal">root@localhost?socket=%2Ftmp%2Fmysqld.sock%2F</code>.
+</p></li></ul>
+</div>
+</li><li class="listitem"><p>
+            <em class="replaceable"><code>schema</code></em>: this element is optional
+            and specifies the database to be set as default when the
+            connection is established.
+          </p></li><li class="listitem"><p>
+            <em class="replaceable"><code>?attribute=value</code></em>: this element is
+            optional and specifies a data dictionary that contains
+
+            
+
+            options.
+</p></li></ul>
+</div>
+<p>
+        If no password is specified using the URI type string, which is
+        recommended, then the password is prompted for. The following
+        examples show how to specify URI type strings with the user name
+        <em class="replaceable"><code>user</code></em>, in each case the password is
+        prompted for:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            An X Protocol connection to a local server instance
+            listening at port 33065.
+          </p><pre class="programlisting">
+mysqlx://user@localhost:33065
+</pre></li><li class="listitem"><p>
+            A classic MySQL protocol X Protocol connection to a
+            local server instance listening at port 3333.
+          </p><pre class="programlisting">
+mysql://user@localhost:3333
+</pre></li><li class="listitem"><p>
+            An X Protocol connection to a remote server instance,
+            using a host name, an IPv4 address and an IPv6 address.
+          </p><pre class="programlisting">
+mysqlx://user@server.example.com/
+mysqlx://user@198.51.100.14:123
+mysqlx://user@[2001:db8:85a3:8d3:1319:8a2e:370:7348]
+		</pre></li><li class="listitem"><p>
+            An optional path can be specified, which represents a
+            database schema.
+
+            
+          </p><pre class="programlisting">
+mysqlx://user@198.51.100.1/world%5Fx
+mysqlx://user@198.51.100.2:33060/world
+		</pre></li><li class="listitem"><p>
+            An optional query can be specified, consisting of values in
+            the form of a <code class="literal">key=value</code> pair or as a
+            single <code class="literal">key</code>. The <code class="literal">,</code>
+            character is used as a separator for values, a combination
+            of multiple pairs and keys can be specified. Values can be
+            of type list, list values are ordered by appearance. Strings
+            must be percent encoded.
+
+            
+          </p><pre class="programlisting">
+ssluser@127.0.0.1?ssl-ca%3D%2Froot%2Fclientcert%2Fca-cert.pem%26ssl-cert%3D%2Fro\
+ot%2Fclientcert%2Fclient-cert.pem%26ssl-key%3D%2Froot%2Fclientcert%2Fclient-key
+.pem
+</pre></li></ul>
+</div>
+<p>
+        Although using a password-less account is insecure and not
+        recommended, you can specify a user without a password using a
+        <em class="replaceable"><code>:</code></em> after the user name, for example:
+      </p><pre class="programlisting">
+mysqlx://user:@localhost
+</pre>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-connection-using-parameters"></a>18.2.1.2 Connecting using Individual Parameters</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        In addition to specifying connection parameters using a URI type
+        string, it is also possible to define the connection data when
+        starting MySQL Shell using separate command parameters for
+        each value. For a full reference of MySQL Shell command
+        options see <a class="xref" href="programs.html#mysqlsh" title="4.5.7 mysqlsh — The MySQL Shell">Section 4.5.7, “<span class="command"><strong>mysqlsh</strong></span> — The MySQL Shell”</a>.
+      </p><p>
+        Use the following connection related parameters:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_dbuser"><code class="option">--dbuser</code></a>
+            (<code class="option">-u</code>) <em class="replaceable"><code>value</code></em>
+          </p></li><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_dbpassword"><code class="option">--dbpassword</code></a>
+            <em class="replaceable"><code>value</code></em>
+          </p></li><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_host"><code class="option">--host</code></a> (<code class="option">-h</code>)
+            <em class="replaceable"><code>value</code></em>
+          </p></li><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_port"><code class="option">--port</code></a> (<code class="option">-P</code>)
+            <em class="replaceable"><code>value</code></em>
+          </p></li><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_schema"><code class="option">--schema</code></a>
+            (<code class="option">-D</code>) <em class="replaceable"><code>value</code></em>
+          </p></li><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_password"><code class="option">--password</code></a>
+            (<code class="option">-p</code>)
+          </p></li><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_socket"><code class="option">--socket</code></a>
+            (<code class="option">-S</code>)
+</p></li></ul>
+</div>
+<p>
+        The first 5 parameters match the elements used in the URI type
+        string format described at
+        <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-uri" title="18.2.1.1 Connecting using a URI String">Section 18.2.1.1, “Connecting using a URI String”</a>.
+      </p><p>
+        The <a class="link" href="programs.html#option_mysqlsh_password"><code class="option">--password</code></a> parameter
+        indicates the user should connect <span class="emphasis"><em>without</em></span> a
+        password.
+      </p><p>
+        For consistency, the following aliases are supported for some
+        parameters:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_user"><code class="option">--user</code></a> is equivalent to
+            <a class="link" href="programs.html#option_mysqlsh_dbuser"><code class="option">--dbuser</code></a>
+          </p></li><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_password"><code class="option">--password</code></a> is equivalent to
+            <a class="link" href="programs.html#option_mysqlsh_dbpassword"><code class="option">--dbpassword</code></a>
+          </p></li><li class="listitem"><p>
+            <a class="link" href="programs.html#option_mysqlsh_database"><code class="option">--database</code></a> is equivalent to
+            <a class="link" href="programs.html#option_mysqlsh_schema"><code class="option">--schema</code></a>
+</p></li></ul>
+</div>
+<p>
+        When parameters are specified in multiple ways, for example
+        using both the <a class="link" href="programs.html#option_mysqlsh_uri"><code class="option">--uri</code></a> option and
+        specifying individual parameters such as
+        <a class="link" href="programs.html#option_mysqlsh_user"><code class="option">--user</code></a>, the following rules
+        apply:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            If an argument is specified more than once the value of the
+            last appearance is used.
+          </p></li><li class="listitem"><p>
+            If both individual connection arguments and
+            <a class="link" href="programs.html#option_mysqlsh_uri"><code class="option">--uri</code></a> are specified, the
+            value of <a class="link" href="programs.html#option_mysqlsh_uri"><code class="option">--uri</code></a> is taken as
+            the base and the values of the individual arguments override
+            the specific component from the base URI.
+          </p><p>
+            For example to override <em class="replaceable"><code>user</code></em> from
+            the URI:
+          </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>mysqlsh --uri <em class="replaceable"><code>user</code></em>@localhost:33065 --user <em class="replaceable"><code>otheruser</code></em></code></strong>
+</pre></li></ul>
+</div>
+<p>
+        The following examples show how to use command parameters to
+        specify connections. Attempt to establish an X Protocol
+        connection with a specified user at port 33065.
+      </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>mysqlsh --mysqxl -u <em class="replaceable"><code>user</code></em> -h localhost -P 33065</code></strong>
+</pre><p>
+        Attempt to establish a classic MySQL protocol connection with a
+        specified user.
+      </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>mysqlsh --mysql -u <em class="replaceable"><code>user</code></em> -h localhost</code></strong>
+</pre>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-encrypted-connections"></a>18.2.1.3 Using Encrypted Connections</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        Using encrypted connections is possible when connecting to a TLS
+        (sometimes referred to as SSL) enabled MySQL server. Much of the
+        configuration of MySQL Shell is based on the options used by
+        MySQL server, see <a class="xref" href="security.html#encrypted-connections" title="6.4 Using Encrypted Connections">Section 6.4, “Using Encrypted Connections”</a> for
+        more information.
+      </p><p>
+        To configure an encrypted connection at startup of
+        MySQL Shell, use the following command options:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl"><code class="option">--ssl</code></a> : Deprecated, to be
+            removed in a future version. This option enables or disables
+            encrypted connections.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl-mode"><code class="option">--ssl-mode</code></a> : This option
+            specifies the security state of the connection to the
+            server.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl-ca"><code class="option">--ssl-ca=<em class="replaceable"><code>filename</code></em></code></a>:
+            The path to a file in PEM format that contains a list of
+            trusted SSL Certificate Authorities.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl-capath"><code class="option">--ssl-capath=<em class="replaceable"><code>directory</code></em></code></a>:
+            The path to a directory that contains trusted SSL
+            Certificate Authority certificates in PEM format.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl-cert"><code class="option">--ssl-cert=<em class="replaceable"><code>filename</code></em></code></a>:
+            The name of the SSL certificate file in PEM format to use
+            for establishing an encrypted connection.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl-cipher"><code class="option">--ssl-cipher=<em class="replaceable"><code>name</code></em></code></a>:
+            The name of the SSL cipher to use for establishing an
+            encrypted connection.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl-key"><code class="option">--ssl-key=<em class="replaceable"><code>filename</code></em></code></a>:
+            The name of the SSL key file in PEM format to use for
+            establishing an encrypted connection.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl-crl"><code class="option">--ssl-crl=<em class="replaceable"><code>name</code></em></code></a>:
+            The path to a file containing certificate revocation lists
+            in PEM format.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_ssl-crlpath"><code class="option">--ssl-crlpath=<em class="replaceable"><code>directory</code></em></code></a>:
+            The path to a directory that contains files containing
+            certificate revocation lists in PEM format.
+          </p></li><li class="listitem"><p>
+            <a class="link" href="security.html#option_general_tls-version"><code class="option">--tls-version=<em class="replaceable"><code>version</code></em></code></a>:
+            The TLS protocols permitted for encrypted connections.
+</p></li></ul>
+</div>
+<p>
+        Alternatively the SSL options can be encoded as part of a URI
+        type string as part of the query element. The available SSL
+        options are the same as those listed above, but written without
+        the proceeding hyphens. For example <code class="literal">ssl-ca</code> is
+        the equivalent of <a class="link" href="security.html#option_general_ssl-ca"><code class="option">--ssl-ca</code></a>.
+      </p><p>
+        Paths specified in a URI type string must be percent encoded,
+        for example:
+      </p><pre class="programlisting">
+ssluser@127.0.0.1?ssl-ca%3D%2Froot%2Fclientcert%2Fca-cert.pem%26ssl-cert%3D%2Fro\
+ot%2Fclientcert%2Fclient-cert.pem%26ssl-key%3D%2Froot%2Fclientcert%2Fclient-key
+.pem
+</pre><p>
+        See <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-uri" title="18.2.1.1 Connecting using a URI String">Section 18.2.1.1, “Connecting using a URI String”</a> for more
+        information.
+</p>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-connections-in-javascript-and-python"></a>18.2.1.4 Connections in JavaScript and Python</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        When a connection is made using the command options or by using
+        any of the MySQL Shell commands, a global session object is
+        created. This session is global because once created, it can be
+        used in any of the MySQL Shell execution modes.
+      </p><p>
+        Any global session object is available in JavaScript or Python
+        modes because a variable called
+        <span class="strong"><strong>session</strong></span> holds a reference to
+        it.
+      </p><p>
+        In addition to the global session object, sessions can be
+        established and assigned to a different variable by using the
+        functions available in the <code class="literal">mysql</code> and
+        <code class="literal">mysqlx</code> JavaScript and Python modules.
+      </p><p>
+        For example, the following functions are provided by these
+        modules:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            <code class="literal">mysqlx.getSession(connectionData[,
+            password])</code>
+          </p><p>
+            The returned object can be Session if the object was created
+            or retrieved using a Session instance, and ClassicSession if
+            the object was created or retrieved using a ClassicSession
+            instance.
+          </p></li><li class="listitem"><p>
+            <code class="literal">mysql.getClassicSession(connectionData[,
+            password])</code>
+          </p><p>
+            The returned object is a ClassicSession which uses the
+            traditional MySQL protocol and has a limited development
+            API.
+</p></li></ul>
+</div>
+<p>
+        <code class="literal">connectionData</code> can be either a URI type
+        string as specified at
+        <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-uri" title="18.2.1.1 Connecting using a URI String">Section 18.2.1.1, “Connecting using a URI String”</a> or a
+        dictionary containing the connection parameters.
+      </p><p>
+        The following example shows how to create a Session using the
+        X Protocol:
+      </p><pre class="programlisting">
+mysql-js&gt; <strong class="userinput"><code>var mysession1=mysqlx.getSession('root@localhost:33060', '<em class="replaceable"><code>password</code></em>');</code></strong>
+mysql-js&gt; <strong class="userinput"><code>session</code></strong>
+&lt;Session:root@localhost&gt;
+mysql-js&gt;
+</pre><p>
+        The following example shows how to create a ClassicSession:
+      </p><pre class="programlisting">
+mysql-js&gt; <strong class="userinput"><code>var mysession2=mysql.getClassicSession('root@localhost:3306', '<em class="replaceable"><code>password</code></em>');</code></strong>
+mysql-js&gt; <strong class="userinput"><code>session</code></strong>
+&lt;ClassicSession:root@localhost:3306&gt;
+mysql-js&gt;
+</pre>
+<div class="section">
+
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title"><a name="mysql-shell-using-ssl-connection-data"></a>18.2.1.4.1 Using Encrypted Connections in Code</h5>
+</div>
+</div>
+</div>
+<p>
+          To establish an encrypted connection, set the SSL information
+          in the <code class="literal">connectionData</code> dictionary. For
+          example:
+        </p><pre class="programlisting">
+mysql-js&gt; <strong class="userinput"><code>var session=mysqlx.getSession({host: 'localhost',
+                                             dbUser: 'root',
+                                             dbPassword: '<em class="replaceable"><code>password</code></em>',
+                                             ssl_ca: "path_to_ca_file",
+                                             ssl_cert: "path_to_cert_file",
+                                             ssl_key: "path_to_key_file"});</code></strong>
+
+</pre>
+</div>
+
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-sessions"></a>18.2.2 MySQL Shell Sessions</h3>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-sessions-introduction">18.2.2.1 MySQL Shell Sessions Explained</a></span></dt></dl>
+</div>
+<p>
+      This section explains the different types of sessions in
+      MySQL Shell and how to create and configure them.
+</p>
+<div class="section">
+
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-sessions-introduction"></a>18.2.2.1 MySQL Shell Sessions Explained</h4>
+</div>
+</div>
+</div>
+<p>
+        MySQL Shell is a unified interface to operate MySQL Server
+        through scripting languages such as JavaScript or Python. To
+        maintain compatibility with previous versions, SQL can also be
+        executed in certain modes. A connection to a MySQL server is
+        required. In MySQL Shell these connections are handled by a
+        <span class="emphasis"><em>Session</em></span> object.
+      </p><p>
+        The following types of Session object are available:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            <span class="emphasis"><em>NodeSession</em></span>: Use this session type for
+            new application development to communicate with MySQL server
+            instances which have the X Protocol enabled. It offers
+            the best integration with MySQL Server, and therefore, it is
+            used by default.
+          </p></li><li class="listitem"><p>
+            <span class="emphasis"><em>ClassicSession</em></span> Use this session type to
+            interact with MySQL Servers that do not have the
+            X Protocol enabled. The development API available for
+            this type of session is very limited. For example, there are
+            no CRUD operations, no collection handling, and binding is
+            not supported.
+</p></li></ul>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h5 class="title"><a name="mysql-shell-choose-session-type"></a>Choosing a MySQL Shell Session Type</h5>
+
+</div>
+
+</div>
+
+</div>
+<p>
+          MySQL Shell creates a Session object by default. You can
+          either configure the session type using MySQL Shell command
+          options, the <code class="literal">scheme</code> element of a URI type
+          string, or provide an option to the
+          <code class="literal">\connect</code> command. To choose which type of
+          session should be created when starting MySQL Shell, use one
+          of these options:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+              <a class="link" href="programs.html#option_mysqlsh_sqln"><code class="option">--sqln</code></a> creates a Node
+              session, connected using X Protocol.
+            </p></li><li class="listitem"><p>
+              <a class="link" href="programs.html#option_mysqlsh_sqlc"><code class="option">--sqlc</code></a> creates a
+              ClassicSession, connected using MySQL protocol.
+</p></li></ul>
+</div>
+<p>
+          To choose which type of session to use when defining a URI
+          type string use one of these options:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+              Specify <code class="literal">mysqlx</code> to create an
+              X Protocol session. The X Plugin must be
+              installed on the server instance, see
+              <a class="xref" href="document-store.html" title="Chapter 19 Using MySQL as a Document Store">Chapter 19, <i>Using MySQL as a Document Store</i></a> for more information.
+            </p></li><li class="listitem"><p>
+              Specify <code class="literal">mysql</code> to create a classic MySQL
+              protocol session.
+</p></li></ul>
+</div>
+<p>
+          For more information, see
+          <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-uri" title="18.2.1.1 Connecting using a URI String">Section 18.2.1.1, “Connecting using a URI String”</a>.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h5 class="title"><a name="mysql-shell-create-session-using-shell"></a>Creating a Session Using Shell Commands</h5>
+
+</div>
+
+</div>
+
+</div>
+<p>
+          If you open MySQL Shell without specifying connection
+          parameters, MySQL Shell opens without an established global
+          session. It is possible to establish a global session once
+          MySQL Shell has been started using the MySQL Shell
+          <code class="literal">\connect <em class="replaceable"><code>URI</code></em></code>
+          command, where <em class="replaceable"><code>URI</code></em> is a URI type
+          string as defined at
+          <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-uri" title="18.2.1.1 Connecting using a URI String">Section 18.2.1.1, “Connecting using a URI String”</a>. For
+          example:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+              <code class="literal">\connect URI</code>: Creates a Node session.
+              Attempts to use X Protocol by default, and falls
+              back to MySQL protocol.
+            </p></li><li class="listitem"><p>
+              <code class="literal">\connect -n URI</code>: Creates a Node
+              session.
+            </p></li><li class="listitem"><p>
+              <code class="literal">\connect -c URI</code>: Creates a
+              ClassicSession using MySQL protocol.
+</p></li></ul>
+</div>
+<p>
+          For example:
+        </p><pre class="programlisting">
+	mysql-js&gt; <strong class="userinput"><code>\connect mysqlx://user@localhost:33060</code></strong>
+</pre><p>
+          Alternatively, use the
+          <code class="literal">shell.connect('<em class="replaceable"><code>URI</code></em>'</code>
+          method. For example this is equivalent to the above
+          <code class="literal">\connect&gt;</code> command:
+        </p><pre class="programlisting">
+mysql-js&gt; <strong class="userinput"><code>shell.connect('mysqlx://user@localhost:33060')</code></strong>
+</pre>
+</div>
+
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-global-variables"></a>18.2.3 MySQL Shell Global Variables</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      MySQL Shell reserves certain variables as global variables,
+      which are assigned to commonly used objects in scripting. This
+      section describes the available global variables and provides
+      examples of working with them. The global variables are:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          <code class="literal">session</code> represents the global session if
+          one has been established.
+        </p></li><li class="listitem"><p>
+          <code class="literal">db</code> represents a schema if one has been
+          defined, for example by a URI type string.
+        </p></li><li class="listitem"><p>
+          <code class="literal">dba</code> represents the AdminAPI, a component of
+          InnoDB cluster which enables you to administer clusters of
+          server instances. See
+          <a class="xref" href="mysql-innodb-cluster-userguide.html" title="Chapter 20 InnoDB Cluster">Chapter 20, <i>InnoDB Cluster</i></a>.
+        </p></li><li class="listitem"><p>
+          <code class="literal">shell</code> provides general purpose functions,
+          for example to configure MySQL Shell.
+</p></li></ul>
+</div>
+<div class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+<div class="admon-title">
+Important
+</div>
+<p>
+        These words are reserved and cannot be used, for example as
+        names of variables.
+</p>
+</div>
+<p>
+      By using these global objects, MySQL Shell provides interactive
+      error resolution for common situations. For example:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          Attempting to use an undefined <code class="literal">session</code>
+          global variable.
+        </p></li><li class="listitem"><p>
+          Attempting to retrieve an nonexistent schema using
+          <code class="literal">session</code>.
+        </p></li><li class="listitem"><p>
+          Attempting to use an undefined <code class="literal">db</code> global
+          variable.
+</p></li></ul>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h4 class="title"><a name="mysql-shell-undefined-global-session"></a>Undefined Global Session</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        The global <code class="literal">session</code> variable is set when a
+        global session is established. When a global session is
+        established, issuing a <code class="literal">session</code> statement in
+        MySQL Shell displays the session type and its URI as follows:
+      </p><pre class="programlisting">
+mysql-js&gt; session
+&lt;NodeSession:root@localhost:33060&gt;
+mysql-js&gt;
+</pre><p>
+        If no global session has been established, MySQL Shell
+        displays the following:
+      </p><pre class="programlisting">
+mysql-js&gt; session
+&lt;Undefined&gt;
+mysql-js&gt;
+</pre><p>
+        If you attempt to use the <code class="literal">session</code> variable
+        when no global session is established, interactive error
+        resolution starts and you are prompted to provide the required
+        information to establish a global session. If the session is
+        successfully established, it is assigned to the
+        <code class="literal">session</code> variable. The prompts are:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            An initial prompt explains that no global session is
+            established and asks if one should be established.
+          </p></li><li class="listitem"><p>
+            If you choose to set a global session, the session type is
+            requested.
+          </p></li><li class="listitem"><p>
+            The URI type string to connect to the server instance is
+            requested. See
+            <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-uri" title="18.2.1.1 Connecting using a URI String">Section 18.2.1.1, “Connecting using a URI String”</a>.
+          </p></li><li class="listitem"><p>
+            If required, a password is requested.
+</p></li></ul>
+</div>
+<p>
+        For example:
+      </p><pre class="programlisting">
+mysql-js&gt; session.uri
+The global session is not set, do you want to establish a session?
+
+   1) MySQL Document Store Session through X Protocol
+   2) Classic MySQL Session
+
+Please select the session type or ENTER to cancel: 2
+Please specify the MySQL server URI: root@localhost
+Enter password: 
+root@localhost:
+mysql-js&gt; session
+&lt;ClassicSession:root@localhost:&gt;
+</pre>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h4 class="title"><a name="mysql-shell-undefined-db-variable"></a>Undefined db Variable</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        The global <code class="literal">db</code> variable is set when a global
+        session is established and a default schema is configured. For
+        example, using a URI type string such as
+        <code class="literal">root@localhost/sakila</code> to establish a global
+        session connected to the MySQL Server at
+        <code class="literal">localhost</code>, on port 33060, as the user
+        <code class="literal">root</code>, assigns the schema
+        <code class="literal">sakila</code> to the global variable
+        <code class="literal">db</code>. Once a schema is defined, issuing
+        <code class="literal">db</code> at the MySQL Shell prompt prints the
+        schema name as follows:
+      </p><pre class="programlisting">
+mysql-js&gt; db
+&lt;Schema:world_x&gt;
+mysql-js&gt;
+</pre><p>
+        If there is no global session established, the following is
+        displayed:
+      </p><pre class="programlisting">
+mysql-js&gt; db
+&lt;Undefined&gt;
+mysql-js&gt;
+</pre><p>
+        If you attempt to use the <code class="literal">db</code> variable when no
+        global session has been established, the following error is
+        displayed:
+      </p><pre class="programlisting">
+mysql-js&gt; db.getCollections()
+LogicError: The db variable is not set, establish a global session first.
+at (shell):1:2
+in db.getCollections()
+^
+</pre><p>
+        If a global session has been established but you attempt to use
+        an undefined <code class="literal">db</code>, interactive error resolution
+        begins and you are prompted to define an active schema by
+        providing the schema name. If this succeeds the
+        <code class="literal">db</code> variable is set to the defined schema. For
+        example:
+      </p><pre class="programlisting">
+mysql-js&gt; db.getCollections()
+The db variable is not set, do you want to set the active schema? [y/N]:y
+Please specify the schema:world_x
+[
+&lt;Collection:countryinfo&gt;
+]
+mysql-js&gt; db
+&lt;Schema:world_x&gt;
+mysql-js&gt;
+</pre>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h4 class="title"><a name="mysql-shell-retrieving-a-nonexistent-schema"></a>Retrieving an Nonexistent Schema</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        If you attempt to use <code class="literal">session</code> to retrieve an
+        nonexistent schema, interactive error resolution provides the
+        option to create the schema.
+      </p><pre class="programlisting">
+mysql-js&gt; var mySchema = session.getSchema('my_test')
+The schema my_test does not exist, do you want to create it? [y/N]: y
+
+mysql-js&gt; mySchema
+&lt;Schema:my_test&gt;
+mysql-js&gt;</pre><p>
+        In all cases, if you do not provide the information required to
+        resolve each situation, a proper result of executing the
+        requested statement on an undefined variable is displayed.
+</p>
+</div>
+
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both"><a name="mysql-shell-code-execution"></a>18.3 MySQL Shell Code Execution</h2>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-interactive-code-execution">18.3.1 Interactive Code Execution</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-batch-code-execution">18.3.2 Batch Code Execution</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-output-formats">18.3.3 Output Formats</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-active-language">18.3.4 Active Language</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-batch-mode-interactive">18.3.5 Batch Mode Made Interactive</a></span></dt></dl>
+</div>
+<p>
+    This section explains how code execution works in MySQL Shell.
+</p>
+<div class="section">
+
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-interactive-code-execution"></a>18.3.1 Interactive Code Execution</h3>
+</div>
+</div>
+</div>
+<p>
+      The default mode of MySQL Shell provides interactive execution
+      of database operations that you type at the command prompt. These
+      operations can be written in JavaScript, Python or SQL depending
+      on the curent <a class="xref" href="mysql-shell.html#mysql-shell-active-language" title="18.3.4 Active Language">Section 18.3.4, “Active Language”</a>. When
+      executed, the results of the operation are displayed on-screen.
+    </p><p>
+      As with any other language interpreter, MySQL Shell is very
+      strict regarding syntax. For example, the following JavaScript
+      snippet reads and prints the documents in a collection:
+    </p><pre class="programlisting">
+var mysqlx = require('mysqlx').mysqlx;
+var mySession = mysqlx.getSession('user:pwd@localhost');
+var result = mySession.world_x.countryinfo.find().execute();
+var record = result.fetchOne();
+while(record){
+  print(record);
+  record = result.fetchOne();
+}
+</pre><p>
+      As seen above, the call to <code class="literal">find()</code> is followed
+      by the <code class="literal">execute()</code> function. CRUD database
+      commands are only actually executed on the MySQL Server when
+      <code class="literal">execute()</code> is called. However, when working with
+      MySQL Shell interactively, <code class="literal">execute()</code> is
+      implicitly called whenever you press <code class="literal">Return</code> on
+      a statement. Then the results of the operation are fetched and
+      displayed on-screen. The rules for when you need to call
+      <code class="literal">execute()</code> or not are as follows:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          When using MySQL Shell in this way, calling
+          <code class="literal">execute()</code> becomes optional on:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              <code class="literal">Collection.add()</code>
+            </p></li><li class="listitem"><p>
+              <code class="literal">Collection.find()</code>
+            </p></li><li class="listitem"><p>
+              <code class="literal">Collection.remove()</code>
+            </p></li><li class="listitem"><p>
+              <code class="literal">Collection.modify()</code>
+            </p></li><li class="listitem"><p>
+              <code class="literal">Table.insert()</code>
+            </p></li><li class="listitem"><p>
+              <code class="literal">Table.select()</code>
+            </p></li><li class="listitem"><p>
+              <code class="literal">Table.delete()</code>
+            </p></li><li class="listitem"><p>
+              <code class="literal">Table.update()</code>
+            </p></li><li class="listitem"><p>
+              <code class="literal">NodeSession.sql()</code>
+</p></li></ul>
+</div>
+</li><li class="listitem"><p>
+          Automatic execution is disabled if the object is assigned to a
+          variable. In such a case calling <code class="literal">execute()</code>
+          is mandatory to perform the operation.
+        </p></li><li class="listitem"><p>
+          When a line is processed and the function returns any of the
+          available <code class="literal">Result</code> objects, the information
+          contained in the Result object is automatically displayed on
+          screen. The functions that return a Result object include:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              The SQL execution and CRUD operations (listed above)
+            </p></li><li class="listitem"><p>
+              Transaction handling and drop functions of the session
+              objects in both mysql and mysqlx modules: -
+
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: square; "><li class="listitem"><p>
+                    <code class="literal">startTransaction()</code>
+                  </p></li><li class="listitem"><p>
+                    <code class="literal">commit()</code>
+                  </p></li><li class="listitem"><p>
+                    <code class="literal">rollback()</code>
+                  </p></li><li class="listitem"><p>
+                    <code class="literal">dropSchema()</code>
+                  </p></li><li class="listitem"><p>
+                    <code class="literal">dropTable()</code>
+                  </p></li><li class="listitem"><p>
+                    <code class="literal">dropCollection()</code>
+                  </p></li><li class="listitem"><p>
+                    <code class="literal">dropView()</code>
+                  </p></li><li class="listitem"><p>
+                    <code class="literal">ClassicSession.runSql()</code>
+</p></li></ul>
+</div>
+<p>
+</p></li></ul>
+</div>
+</li></ul>
+</div>
+<p>
+      Based on the above rules, the statements needed in the
+      MySQL Shell in interactive mode to establish a session, query,
+      and print the documents in a collection are:
+    </p><pre class="programlisting">
+mysql-js&gt; <strong class="userinput"><code>var mysqlx = require('mysqlx').mysqlx;</code></strong>
+mysql-js&gt; <strong class="userinput"><code>var mySession = mysqlx.getSession('user:pwd@localhost');</code></strong>
+</pre><p>
+      No call to <code class="literal">execute()</code> is needed and the Result
+      object is automatically printed.
+    </p><pre class="programlisting">
+mysql-js&gt; <strong class="userinput"><code>mySession.world_x.countryinfo.find();</code></strong>
+</pre>
+<div class="simplesect">
+
+<div class="titlepage">
+<div>
+
+<div class="simple">
+<h4 class="title"><a name="mysql-shell-results-vertical"></a>Formatting Results Vertically</h4>
+</div>
+</div>
+</div>
+<p>
+        When executing SQL using MySQL Shell you can display results
+        in a column-per-row format with the <code class="literal">\G</code>
+        command, in a similar way to <a class="link" href="programs.html#mysql" title="4.5.1 mysql — The MySQL Command-Line Tool"><span class="command"><strong>mysql</strong></span></a>. If a
+        statement is terminated with <code class="literal">\G</code> instead of
+        the active delimiter (which defaults to <code class="literal">;</code>),
+        it is executed by the server and the results are displayed in
+        vertical format, regardless of the current default output
+        format. For example issuing a statement such as
+
+</p><pre class="programlisting">SELECT * FROM mysql.user \G</pre><p>
+
+        displays the results vertically.
+      </p><p>
+        Multiple SQL statements on the same line which are separated by
+        <code class="literal">\G</code> are executed separately as if they
+        appeared one per line., for example
+
+</p><pre class="programlisting">select 1\Gselect 2\Gselect 3\G</pre><p>
+
+        In other words <code class="literal">\G</code> functions as a normal
+        delimiter.
+</p>
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-batch-code-execution"></a>18.3.2 Batch Code Execution</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      As well as interactive code execution, MySQL Shell provides
+      batch code execution from:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          A file loaded for processing.
+        </p></li><li class="listitem"><p>
+          A file containing code that is redirected to the standard
+          input for execution.
+        </p></li><li class="listitem"><p>
+          Code from a different source that is redirected to the
+          standard input for execution.
+</p></li></ul>
+</div>
+<p>
+      The input is processed based on the current programming language
+      selected in MySQL Shell, which defaults to JavaScript. For
+      example:
+    </p><p>
+      Loading JavaScript code from a file for batch processing.
+    </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>mysqlsh --file code.js</code></strong>
+</pre><p>
+      Redirecting a JavaScript file to standard input for execution.
+    </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>mysqlsh &lt; code.js</code></strong>
+</pre><p>
+      Redirecting SQL to standard input for execution.
+    </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>echo "show databases;" | mysqlsh --sql --uri root@198.51.100.141:33060</code></strong>
+</pre>
+<div class="simplesect">
+
+<div class="titlepage">
+<div>
+
+<div class="simple">
+<h4 class="title"><a name="mysql-shell-executable-scripts"></a>Executable Scripts</h4>
+</div>
+</div>
+</div>
+<p>
+        Starting with version 1.0.4, on Linux you can create executable
+        scripts that run with MySQL Shell by including a
+        <code class="literal">#!</code> line as the first line of the script. This
+        line should provide the full path to MySQL Shell and include
+        the <a class="link" href="programs.html#option_mysqlsh_file"><code class="option">--file</code></a> option. For example:
+      </p><pre class="programlisting">
+#!/usr/local/mysql-shell/bin/mysqlsh --file
+print("Hello World\n");
+</pre><p>
+        The script file must be marked as executable in the filesystem.
+        Running the script invokes MySQL Shell and it executes the
+        contents of the script.
+</p>
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-output-formats"></a>18.3.3 Output Formats</h3>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-output-table-format">18.3.3.1 Table Format</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-output-tab-format">18.3.3.2 Tab Separated Format</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-json-output">18.3.3.3 JSON Format Output</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-output-metadata">18.3.3.4 Result Metadata</a></span></dt></dl>
+</div>
+<p>
+      The output of the commands processed on the server can be
+      formatted in different ways. This section details the different
+      available output formats.
+</p>
+<div class="section">
+
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-output-table-format"></a>18.3.3.1 Table Format</h4>
+</div>
+</div>
+</div>
+<p>
+        The table format is used by default when MySQL Shell is in
+        interactive mode. The output is presented as a formatted table
+        for a better view and to aid analysis.
+      </p><pre class="programlisting">
+mysql-sql&gt; <strong class="userinput"><code>select * from sakila.actor limit 3;</code></strong>
++----------+-------------+----------------+----------------------+
+| actor_id | first_name  | last_name      | last_update          |
++----------+-------------+----------------+----------------------+
+|        1 | PENELOPE    | GUINESS        | 2006-02-15 4:34:33   |
+|        2 | NICK        | WAHLBERG       | 2006-02-15 4:34:33   |
+|        3 | ED          | CHASE          | 2006-02-15 4:34:33   |
++----------+-------------+----------------+----------------------+
+3 rows in set (0.00 sec)
+
+mysql-sql&gt;
+</pre><p>
+        To get this output format when running in batch mode, use the
+        <a class="link" href="programs.html#option_mysqlsh_table"><code class="option">--table</code></a> command-line option.
+</p>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-output-tab-format"></a>18.3.3.2 Tab Separated Format</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        This format is used by default when running MySQL Shell in
+        batch mode, to have better output for automated analysis.
+      </p><pre class="programlisting">
+&gt;<strong class="userinput"><code>echo "select * from sakila.actor limit 3;" | mysqlsh --classic --uri root@198.51.100.141:33460</code></strong>
+actor_id        first_name      last_name       last_update
+1       PENELOPE        GUINESS 2006-02-15 4:34:33
+2       NICK    WAHLBERG        2006-02-15 4:34:33
+3       ED      CHASE   2006-02-15 4:34:33
+</pre>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-json-output"></a>18.3.3.3 JSON Format Output</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        MySQL Shell supports the JSON format for output and it is
+        available both in interactive and batch mode. This output format
+        can be enabled using the <a class="link" href="programs.html#option_mysqlsh_json"><code class="option">--json</code></a>
+        command-line option:
+      </p><p>
+        <span class="strong"><strong>JSON Format in Batch Mode</strong></span>
+      </p><pre class="programlisting">
+shell&gt;<strong class="userinput"><code>echo "select * from sakila.actor limit 3;" | mysqlsh --json --sqlc --uri root@198.51.100.141:3306</code></strong>
+{"duration":"0.00 sec","info":"","row_count":3,"rows":[[1,"PENELOPE","GUINESS",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}],[2,"NICK","WAHLBERG",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}],[3,"ED","CHASE",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}]],"warning_count":0}
+
+shell&gt;<strong class="userinput"><code>echo "select * from sakila.actor limit 3;" | mysqlsh --json=raw --sqlc --uri root@198.51.100.141:3306</code></strong>
+{"duration":"0.00 sec","info":"","row_count":3,"rows":[[1,"PENELOPE","GUINESS",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}],[2,"NICK","WAHLBERG",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}],[3,"ED","CHASE",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}]],"warning_count":0}
+
+shell&gt;<strong class="userinput"><code>echo "select * from sakila.actor limit 3;" | mysqlsh --json=pretty --sqlc --uri root@198.51.100.141:3306</code></strong>
+{
+    "duration": "0.00 sec",
+    "info": "",
+    "row_count": 3,
+    "rows": [
+        [
+            1,
+            "PENELOPE",
+            "GUINESS",
+            {
+                "year": 2006,
+                "month": 1,
+                "day": 15,
+                "hour": 4,
+                "minute": 34,
+                "second": 33.0
+            }
+        ],
+        [
+            2,
+            "NICK",
+            "WAHLBERG",
+            {
+                "year": 2006,
+                "month": 1,
+                "day": 15,
+                "hour": 4,
+                "minute": 34,
+                "second": 33.0
+            }
+        ],
+        [
+            3,
+            "ED",
+            "CHASE",
+            {
+                "year": 2006,
+                "month": 1,
+                "day": 15,
+                "hour": 4,
+                "minute": 34,
+                "second": 33.0
+            }
+        ]
+    ],
+    "warning_count": 0
+}
+shell&gt;
+</pre><p>
+        <span class="strong"><strong>JSON Format in Interactive Mode (started
+        with --json=raw)</strong></span>
+      </p><pre class="programlisting">
+mysql-sql&gt; <strong class="userinput"><code>select * from sakila.actor limit 3;</code></strong>
+{"duration":"0.00 sec","info":"","row_count":3,"rows":[[1,"PENELOPE","GUINESS",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}],[2,"NICK","WAHLBERG",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}],[3,"ED","CHASE",{"year":2006,"month":1,"day":15,"hour":4,"minute":34,"second":33.0}]],"warning_count":0}
+
+mysql-sql&gt;
+</pre><p>
+        <span class="strong"><strong>JSON Format in Interactive Mode (started
+        with --json=pretty)</strong></span>
+      </p><pre class="programlisting">
+mysql-sql&gt; <strong class="userinput"><code>select * from sakila.actor limit 3;</code></strong>
+{
+    "duration": "0.00 sec",
+    "info": "",
+    "row_count": 3,
+    "rows": [
+        [
+            1,
+            "PENELOPE",
+            "GUINESS",
+            {
+                "year": 2006,
+                "month": 1,
+                "day": 15,
+                "hour": 4,
+                "minute": 34,
+                "second": 33.0
+            }
+        ],
+        [
+            2,
+            "NICK",
+            "WAHLBERG",
+            {
+                "year": 2006,
+                "month": 1,
+                "day": 15,
+                "hour": 4,
+                "minute": 34,
+                "second": 33.0
+            }
+        ],
+        [
+            3,
+            "ED",
+            "CHASE",
+            {
+                "year": 2006,
+                "month": 1,
+                "day": 15,
+                "hour": 4,
+                "minute": 34,
+                "second": 33.0
+            }
+        ]
+    ],
+    "warning_count": 0
+}
+
+mysql-sql&gt;
+</pre>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-output-metadata"></a>18.3.3.4 Result Metadata</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        When an operation is executed, in addition to any results
+        returned, some additional information is available. This
+        includes information such as the number of affected rows,
+        warnings, duration, and so on, when any of these conditions is
+        true:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            JSON format is being used for the output
+          </p></li><li class="listitem"><p>
+            MySQL Shell is running in interactive mode.
+</p></li></ul>
+</div>
+
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-active-language"></a>18.3.4 Active Language</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      MySQL Shell can execute SQL, JavaScript or Python code, but only
+      one language can be active at a time. The active mode determines
+      how the executed statements are processed:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          If using SQL mode, statements are processed as SQL which means
+          they are sent to the MySQL server for execution.
+        </p></li><li class="listitem"><p>
+          If using JavaScript mode, statements are processed as
+          JavaScript code.
+        </p></li><li class="listitem"><p>
+          If using Python mode, statements are processed as Python code.
+</p></li></ul>
+</div>
+<p>
+      When running MySQL Shell in interactive mode, activate a
+      specific language by entering the commands:
+      <code class="literal">\sql</code>, <code class="literal">\js</code>,
+      <code class="literal">\py</code>.
+    </p><p>
+      When running MySQL Shell in batch mode, activate a specific
+      language by passing any of these command-line options:
+      <a class="link" href="programs.html#option_mysqlsh_js"><code class="option">--js</code></a>,
+      <a class="link" href="programs.html#option_mysqlsh_py"><code class="option">--py</code></a> or
+      <a class="link" href="programs.html#option_mysqlsh_sql"><code class="option">--sql</code></a>. The default mode if none is
+      specified is JavaScript.
+    </p><p>
+      Use MySQL Shell to execute the content of the file
+      <code class="filename">code.sql</code> as SQL.
+    </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>mysqlsh --sql &lt; code.sql</code></strong>
+</pre><p>
+      Use MySQL Shell to execute the content of the file
+      <code class="filename">code.js</code> as JavaScript code.
+    </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>mysqlsh &lt; code.js</code></strong>
+</pre><p>
+      Use MySQL Shell to execute the content of the file
+      <code class="filename">code.py</code> as Python code.
+    </p><pre class="programlisting">
+shell&gt; <strong class="userinput"><code>mysqlsh --py &lt; code.py</code></strong>
+</pre>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-batch-mode-interactive"></a>18.3.5 Batch Mode Made Interactive</h3>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-multiple-line-support">18.3.5.1 Multiple-line Support</a></span></dt></dl>
+</div>
+<p>
+      This section describes code execution in batch mode.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          In batch mode, all the command logic described above is not
+          available, only valid code for the active language can be
+          executed.
+        </p></li><li class="listitem"><p>
+          When processing SQL code, it is executed statement by
+          statement using the following logic: read/process/print
+          result.
+        </p></li><li class="listitem"><p>
+          When processing non-SQL code, it is loaded entirely from the
+          input source and executed as a unit.
+</p></li></ul>
+</div>
+<p>
+      Use the <a class="link" href="programs.html#option_mysqlsh_interactive"><code class="option">--interactive</code></a> (or
+      <code class="option">-i</code>) command-line option to configure
+      MySQL Shell to process the input source as if it were being
+      issued in interactive mode; this enables all the features provided
+      by the Interactive mode to be used in batch processing.
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p>
+        In this case, whatever the source is, it is read line by line
+        and processed using the interactive pipeline.
+</p>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-multiple-line-support"></a>18.3.5.1 Multiple-line Support</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        It is possible to specify statements over multiple lines. When
+        in Python or JavaScript mode, multiple-line mode is
+        automatically enabled when a block of statements starts like in
+        function definitions, if/then statements, for loops, and so on.
+        In SQL mode multiple line mode starts when the command
+        <code class="literal">\</code> is issued.
+      </p><p>
+        Once multiple-line mode is started, the subsequently entered
+        statements are cached.
+      </p><p>
+        For example:
+      </p><pre class="programlisting">
+mysql-sql&gt; <strong class="userinput"><code>\</code></strong>
+... <strong class="userinput"><code>create procedure get_actors()</code></strong>
+... <strong class="userinput"><code>begin</code></strong>
+... <strong class="userinput"><code>  select first_name from sakila.actor;</code></strong>
+... <strong class="userinput"><code>end</code></strong>
+...
+mysql-sql&gt;
+</pre>
+</div>
+
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both"><a name="mysql-shell-configuring"></a>18.4 Configuring MySQL Shell</h2>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-commands">18.4.1 MySQL Shell Commands</a></span></dt></dl>
+</div>
+<p>
+    This section explains how to configure MySQL Shell using commands
+    executable from the interactive code editor and command options. For
+    a description of MySQL Shell command options, see
+    <a class="xref" href="programs.html#mysqlsh" title="4.5.7 mysqlsh — The MySQL Shell">Section 4.5.7, “<span class="command"><strong>mysqlsh</strong></span> — The MySQL Shell”</a>.
+</p>
+<div class="section">
+
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-commands"></a>18.4.1 MySQL Shell Commands</h3>
+</div>
+</div>
+</div>
+<p>
+      MySQL Shell provides commands which enable you to modify the
+      execution environment of the code editor, for example to configure
+      the active programming language or a MySQL Server connection. The
+      following table lists the commands that are available regardless
+      of the currently selected language. As commands need to be
+      available independent of the <span class="emphasis"><em>execution mode</em></span>,
+      they start with an escape sequence, the <code class="literal">\</code>
+      character.
+</p>
+<div class="informaltable">
+<table summary="Commands available for MySQL Shell."><col width="20%"><col width="20%"><col width="60%"><thead><tr>
+          <th scope="col">Command</th>
+          <th scope="col">Alias/Shortcut</th>
+          <th scope="col">Description</th>
+        </tr></thead><tbody><tr>
+          <td scope="row"><p>
+              <code class="literal">\help</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\h</code> or <code class="literal">\?</code>
+            </p></td>
+          <td><p>
+              Prints help about MySQL Shell commands.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\quit</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\q</code> or <code class="literal">\exit</code>
+            </p></td>
+          <td><p>
+              Exit MySQL Shell.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\</code>
+            </p></td>
+          <td></td>
+          <td><p>
+              In SQL mode, begin multiple-line mode. Code is cached and
+              executed when an empty line is entered.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\status</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\s</code>
+            </p></td>
+          <td><p>
+              Show the current MySQL Shell status.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\js</code>
+            </p></td>
+          <td></td>
+          <td><p>
+              Switch execution mode to JavaScript.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\py</code>
+            </p></td>
+          <td></td>
+          <td><p>
+              Switch execution mode to Python.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\sql</code>
+            </p></td>
+          <td></td>
+          <td><p>
+              Switch execution mode to SQL.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\connect</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\c</code>
+            </p></td>
+          <td><p>
+              Connect to a MySQL Server with a URI using an Node session
+              (X Protocol).
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\connect_node</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\cn</code>
+            </p></td>
+          <td><p>
+              (Removed in version 1.0.4, use <code class="literal">\connect
+              -n</code>) Connect to a MySQL Server with a URI using a
+              Node session.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\connect_classic</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\cc</code>
+            </p></td>
+          <td><p>
+              (Removed in version 1.0.4, use <code class="literal">\connect
+              -c</code>) Connect to a MySQL Server with a URI using a
+              Classic session (MySQL Protocol).
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\use</code>
+            </p></td>
+          <td></td>
+          <td><p>
+              Specify the schema to use.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\source</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\.</code>
+            </p></td>
+          <td><p>
+              Execute a script file using the active language.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\warnings</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\W</code>
+            </p></td>
+          <td><p>
+              Show any warnings generated by a statement.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\nowarnings</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\w</code>
+            </p></td>
+          <td><p>
+              Do not show any warnings generated by a statement.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\lsconn</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\lsc</code>
+            </p></td>
+          <td><p>
+              Print the connection data for the stored sessions.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\saveconn</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\savec</code>
+            </p></td>
+          <td><p>
+              Save connection data of a session, optionaly use
+              <code class="literal">-f</code> to force overwriting an existing
+              connection.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\addconn</code>
+            </p></td>
+          <td><p>
+              <code class="literal">\addc</code>
+            </p></td>
+          <td><p>
+              (Removed in version 1.0.4, see
+              <code class="literal">\saveconn</code>) Store the connection data of
+              a session.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\rmconn</code>
+            </p></td>
+          <td></td>
+          <td><p>
+              Removes a stored session.
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              <code class="literal">\chconn</code>
+            </p></td>
+          <td></td>
+          <td><p>
+              (Removed in version 1.0.4, see
+              <code class="literal">\saveconn</code>) Updates a stored session.
+            </p></td>
+</tr></tbody></table>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h4 class="title"><a name="idm140710635675440"></a>Help Command</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        The <code class="literal">\help</code> command can be used with or without
+        parameters. When used without parameters a general help is
+        printed including information about:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            Available commands.
+          </p></li><li class="listitem"><p>
+            Available commands for the active mode.
+</p></li></ul>
+</div>
+<p>
+        When used with a parameter, the parameter must be a valid
+        command. If that is the case, help for that specific command is
+        printed including:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            Description
+          </p></li><li class="listitem"><p>
+            Supported aliases if any
+          </p></li><li class="listitem"><p>
+            Additional help if any
+</p></li></ul>
+</div>
+<p>
+        For example:
+      </p><pre class="programlisting">
+<strong class="userinput"><code>\help connect</code></strong>
+</pre><p>
+        If the parameter is not a valid command, the general help is
+        printed.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h4 class="title"><a name="idm140710635665584"></a>Connect Command</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        The <code class="literal">\connect</code> command is used to connect to a
+        MySQL Server using an URI type string. See
+        <a class="xref" href="mysql-shell.html#mysql-shell-connection-using-uri" title="18.2.1.1 Connecting using a URI String">Section 18.2.1.1, “Connecting using a URI String”</a>.
+      </p><p>
+        For example:
+      </p><pre class="programlisting">
+<strong class="userinput"><code>\connect root@localhost:3306</code></strong>
+</pre><p>
+        If a password is required you are prompted for it.
+      </p><p>
+        Use the <code class="literal">-n</code> option to create a Node session,
+        using the X Protocol to connect to a single server. For
+        example:
+      </p><pre class="programlisting">
+<strong class="userinput"><code>\connect -n root@localhost:3306</code></strong>
+</pre><p>
+        Use the <code class="literal">-c</code> option to create a Classic
+        session, enabling you to use the MySQL Protocol to issue SQL
+        commands directly on a server. For example:
+      </p><pre class="programlisting">
+<strong class="userinput"><code>\connect -c root@localhost:3306</code></strong>
+</pre>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h4 class="title"><a name="idm140710635655424"></a>Status Command</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        The <code class="literal">\status</code> command displays information
+        about the current global connection. This includes information
+        about the server connected to, the character set in use, uptime,
+        and so on.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h4 class="title"><a name="idm140710635653312"></a>Source Command</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        The <code class="literal">\source</code> command is used to execute code
+        from a script at a given path. For example:
+      </p><pre class="programlisting">
+<strong class="userinput"><code>\source /tmp/mydata.sql</code></strong>
+</pre><p>
+        You can execute either SQL, JavaScript or Python code. The code
+        in the file is executed using the active language, so to process
+        SQL code the MySQL Shell must be in SQL mode.
+</p>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Warning
+</div>
+<p>
+          As the code is executed using the active language, executing a
+          script in a different language than the currently selected
+          execution mode language could lead to unexpected results.
+</p>
+</div>
+
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h4 class="title"><a name="idm140710635648336"></a>Use Command</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        The <code class="literal">\use</code> command enables you to choose which
+        schema is active, for example:
+      </p><pre class="programlisting"><strong class="userinput"><code>\use <em class="replaceable"><code>schema_name</code></em></code></strong></pre><p>
+        The <code class="literal">\use</code> command requires a global
+        development session to be active. The <code class="literal">\</code>use
+        command sets the current schema to the specified
+        <em class="replaceable"><code>schema_name</code></em> and updates the
+        <code class="literal">db</code> variable to the object that represents the
+        selected schema.
+</p>
+</div>
+
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both"><a name="mysql-shell-application-log"></a>18.5 MySQL Shell Application Log</h2>
+
+</div>
+
+</div>
+
+</div>
+<p>
+    This section explains the logging provided by MySQL Shell, where
+    to find logs and how to configure the level of logging.
+  </p><p>
+    MySQL Shell can be configured to generate an application log file
+    with information about issues of varying severity. You can use this
+    information to verify the state of MySQL Shell while it is
+    running. The log format is plain text and entries contain a
+    timestamp and description of the problem. For example:
+  </p><pre class="programlisting">
+2016-04-05 22:23:01: Error: Default Domain: (shell):1:8: MySQLError: You have an error
+in your SQL syntax; check the manual that corresponds to your MySQL server version for
+the right syntax to use near '' at line 1 (1064) in session.sql("select * from t
+limit").execute().all();
+</pre><p>
+    The amount of information to add to the log can be configured using
+    <a class="link" href="programs.html#option_mysqlsh_log-level"><code class="option">--log-level</code></a>. See
+    <a class="xref" href="mysql-shell.html#mysql-shell-application-log-configure" title="Configuring Logging">Configuring Logging</a>.
+</p>
+<div class="simplesect">
+
+<div class="titlepage">
+<div>
+
+<div class="simple">
+<h3 class="title"><a name="mysql-shell-application-log-location"></a>MySQL Shell Log File Location</h3>
+</div>
+</div>
+</div>
+<p>
+      The location of the log file is the user configuration path and
+      the file is named <code class="filename">mysqlsh.log</code>.
+</p>
+<h4><a name="idm140710635633520"></a>Log File on Windows</h4>
+<p>
+      On Windows, the default path to the log file is
+      <code class="filename">%APPDATA%\MySQL\mysqlsh\mysqlsh.log</code>
+    </p><p>
+      To find the location of <code class="filename">%APPDATA%</code> on your
+      system, echo it from the comand-line. For example:
+    </p><pre class="programlisting">
+C:&gt;<strong class="userinput"><code>echo %APPDATA%</code></strong>
+C:\Users\exampleuser\AppData\Roaming
+</pre><p>
+      On Windows, the path is determined by the result of gathering the
+      <code class="filename">%APPDATA%</code> folder specific to that user, and
+      then appending <code class="filename">MySQL\mysqlsh</code>. Using the above
+      example results in
+      <code class="filename">C:\Users\exampleuser\AppData\Roaming\MySQL\mysqlsh\mysqlsh.log</code>.
+</p>
+<h4><a name="idm140710635626272"></a>Log File on Unix-based Systems</h4>
+<p>
+      For a machine running Unix, the default path is
+      <code class="filename">~/.mysqlsh/mysqlsh.log</code> where <span class="quote">“<span class="quote">~</span>”</span>
+      represents your home directory. The environment variable
+      <code class="varname">HOME</code> also represents the home directory.
+      Appending <code class="filename">.mysqlsh</code> to the this home directory
+      determines the default path to the logs. For example:
+    </p><pre class="programlisting">
+shell&gt;<strong class="userinput"><code>echo $HOME</code></strong>
+/home/exampleuser
+</pre><p>
+      Therefore the location of the MySQL Shell file on this system is
+      <code class="filename">/home/exampleuser/.mysqlsh/mysqlsh.log</code>.
+    </p><p>
+      These paths can be overridden on all platforms by defining the
+      environment variable <code class="literal">MYSQL_USER_CONFIG_PATH</code>.
+      The value of this variable replaces <code class="literal">%APPDATA%</code>
+      in Windows or <code class="literal">$HOME</code> in Unix.
+</p>
+</div>
+<div class="simplesect">
+<div class="titlepage">
+<div>
+<div class="simple">
+<h3 class="title"><a name="mysql-shell-application-log-configure"></a>Configuring Logging</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      By default, logging is disabled in MySQL Shell. To enable
+      logging use the <a class="link" href="programs.html#option_mysqlsh_log-level"><code class="option">--log-level</code></a>
+      command option when starting MySQL Shell. The value assigned to
+      <a class="link" href="programs.html#option_mysqlsh_log-level"><code class="option">--log-level</code></a> controls the level of
+      detail in the log. The level of logging can be defined using
+      either numeric levels from 1 to 8, or equivalent named levels as
+      shown in the following table.
+</p>
+<div class="informaltable">
+<table summary="Logging levels that are supported for --log-level."><col width="33%"><col width="33%"><col width="33%"><thead><tr>
+          <th scope="col">Log Level Number</th>
+          <th scope="col">Log Level Name</th>
+          <th scope="col">Meaning</th>
+        </tr></thead><tbody><tr>
+          <td scope="row"><p>
+              1
+            </p></td>
+          <td><p>
+              none
+            </p></td>
+          <td><p>
+              No logging, the default
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              2
+            </p></td>
+          <td><p>
+              internal
+            </p></td>
+          <td><p>
+              Internal Error
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              3
+            </p></td>
+          <td><p>
+              error
+            </p></td>
+          <td><p>
+              Errors are logged
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              4
+            </p></td>
+          <td><p>
+              warning
+            </p></td>
+          <td><p>
+              Warnings are logged
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              5
+            </p></td>
+          <td><p>
+              info
+            </p></td>
+          <td><p>
+              Information is logged
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              6
+            </p></td>
+          <td><p>
+              debug
+            </p></td>
+          <td><p>
+              Debug information is logged
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              7
+            </p></td>
+          <td><p>
+              debug2
+            </p></td>
+          <td><p>
+              Debug with more information is logged
+            </p></td>
+        </tr><tr>
+          <td scope="row"><p>
+              8
+            </p></td>
+          <td><p>
+              debug3
+            </p></td>
+          <td><p>
+              Debug with full information is logged
+            </p></td>
+</tr></tbody></table>
+</div>
+<p>
+      The numeric and named levels are equivalent. For example there is
+      no difference in logging when starting MySQL Shell in either of
+      these ways:
+    </p><pre class="programlisting">
+shell&gt;<strong class="userinput"><code>mysqlsh --log-level=4</code></strong>
+shell&gt;<strong class="userinput"><code>mysqlsh --log-level=warning</code></strong>
+</pre>
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both"><a name="mysql-shell-customizing"></a>18.6 Customizing MySQL Shell</h2>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-creating-startup-scripts">18.6.1 Working With Start-Up Scripts</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-adding-module-search-paths">18.6.2 Adding Module Search Paths</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-overriding-the-default-prompt">18.6.3 Overriding the Default Prompt</a></span></dt></dl>
+</div>
+<p>
+    MySQL Shell offers the ability to customize the behavior and code
+    execution environment through startup scripts, which are executed
+    when the application is first run. Using such scripts enables you
+    to:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+        Add additional search paths for Python or JavaScript modules.
+      </p></li><li class="listitem"><p>
+        Override the default prompt used by the Python and JavaScript
+        modes.
+      </p></li><li class="listitem"><p>
+        Define global functions or variables.
+      </p></li><li class="listitem"><p>
+        Any other possible initialization through JavaScript or Python.
+</p></li></ul>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-creating-startup-scripts"></a>18.6.1 Working With Start-Up Scripts</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      When MySQL Shell enters either into JavaScript or Python mode,
+      it searches for startup scripts to be executed. The startup
+      scripts are JavaScript or Python specific scripts containing the
+      instructions to be executed when the corresponding mode is
+      initialized.
+    </p><p>
+      Startup scripts must be named as follows:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          For JavaScript mode: <code class="filename">mysqlshrc.js</code>
+        </p></li><li class="listitem"><p>
+          For Python mode: <code class="filename">mysqlshrc.py</code>
+</p></li></ul>
+</div>
+<p>
+      MySQL Shell searches the following paths for these files (in
+      order of execution).
+    </p><p>
+      On Windows:
+</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1"><li class="listitem"><p>
+          <code class="literal">%PROGRAMDATA%MySQLmysqlshmysqlshrc.[js|py]</code>
+        </p></li><li class="listitem"><p>
+          <code class="literal">%MYSQLSH_HOME%sharedmysqlshmysqlshrc.[js|py]</code>
+        </p></li><li class="listitem"><p>
+          <code class="literal">&lt;mysqlsh binary
+          path&gt;mysqlshrc.[js|py]</code>
+        </p></li><li class="listitem"><p>
+          <code class="literal">%APPDATA%MySQLmysqlshmysqlshrc.[js|py]</code>
+</p></li></ol>
+</div>
+<p>
+      On Linux and OSX:
+</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1"><li class="listitem"><p>
+          <code class="literal">/etc/mysql/mysqlsh/mysqlshrc.[js|py]</code>
+        </p></li><li class="listitem"><p>
+          <code class="literal">$MYSQLSH_HOME/shared/mysqlsh/mysqlshrc.[js|py]</code>
+        </p></li><li class="listitem"><p>
+          <code class="literal">&lt;mysqlsh binary
+          path&gt;/mysqlshrc.[js|py]</code>
+        </p></li><li class="listitem"><p>
+          <code class="literal">$HOME/.mysqlsh/mysqlshrc.[js|py]</code>
+</p></li></ol>
+</div>
+<p>
+      The environment variable <code class="literal">MYSQLSH_HOME</code> defines
+      the root folder of a standard setup of MySQL Shell. If
+      <code class="literal">MYSQLSH_HOME</code> is not defined it is automatically
+      calculated based on the location of the MySQL Shell binary,
+      therefore on many standard setups it is not required to define
+      <code class="literal">MYSQLSH_HOME</code>.
+    </p><p>
+      If <code class="literal">MYSQLSH_HOME</code> is not defined and the
+      MySQL Shell binary is not in a standard install folder
+      structure, then the path defined in option 3 in the above lists is
+      used. If using a standard install or if
+      <code class="literal">MYSQLSH_HOME</code> points to a standard install
+      folder structure, then the path defined in option 3 is not used.
+</p>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Warning
+</div>
+<p>
+        The lists above also define the order of searching the paths, so
+        if something is defined in two different scripts, the script
+        executed later takes precedence.
+</p>
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-adding-module-search-paths"></a>18.6.2 Adding Module Search Paths</h3>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<dl class="toc"><dt><span class="section"><a href="mysql-shell.html#mysql-shell-environment-variables">18.6.2.1 Environment Variables</a></span></dt><dt><span class="section"><a href="mysql-shell.html#mysql-shell-startup-scripts">18.6.2.2 Startup Scripts</a></span></dt></dl>
+</div>
+<p>
+      
+
+      There are two ways to add additional module search paths:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          Through environment variables
+        </p></li><li class="listitem"><p>
+          Through startup scripts
+</p></li></ul>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-environment-variables"></a>18.6.2.1 Environment Variables</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        Python uses the <code class="literal">PYTHONPATH</code> environment
+        variable to allow extending the search paths for python modules.
+        The value of this variable is a list of paths separated by:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+            A colon character in Linux and OSX
+          </p></li><li class="listitem"><p>
+            A semicolon character in Windows
+</p></li></ul>
+</div>
+<p>
+        To achieve this in JavaScript, MySQL Shell supports defining
+        additional JavaScript module paths using the
+        <code class="literal">MYSQLSH_JS_MODULE_PATH</code> environment variable.
+        The value of this variable is a list of semicolon separated
+        paths.
+</p>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="mysql-shell-startup-scripts"></a>18.6.2.2 Startup Scripts</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+        The addition of module search paths can be achieved for both
+        languages through the corresponding startup script.
+      </p><p>
+        For Python modify the <code class="filename">mysqlshrc.py</code> file and
+        append the required paths into the <code class="literal">sys.path</code>
+        array.
+      </p><pre class="programlisting">
+# Import the sys module
+import sys
+
+# Append the additional module paths
+sys.path.append('~/custom/python')
+sys.path.append('~/other/custom/modules')</pre><p>
+        For JavaScript the same task is achieved by adding code into the
+        <code class="filename">mysqlshrc.js</code> file to append the required
+        paths into the predefined
+        <code class="literal">shell.js_module_paths</code> array.
+      </p><pre class="programlisting">
+// Append the additional module paths
+shell.js.module_paths[shell.js.module_paths.length] = '~/custom/js';
+shell.js.module_paths[shell.js.module_paths.length] = '~/other/custom/modules';</pre>
+</div>
+
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-shell-overriding-the-default-prompt"></a>18.6.3 Overriding the Default Prompt</h3>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      MySQL Shell uses a default prompt for both Python (
+      <code class="literal">mysql-py&gt;</code> ) and JavaScript (
+      <code class="literal">mysql-js&gt;</code> ).
+    </p><p>
+      You can customize the language specific prompt using the
+      <code class="literal">shell.custom_prompt()</code> function. This function
+      must return a string that is used as the prompt. To have a custom
+      prompt when MySQL Shell starts, define this function in a
+      startup script. The following example shows how this functionality
+      can be used.
+    </p><p>
+      In Python <code class="literal">shell.custom_prompt()</code> could be
+      defined as:
+    </p><pre class="programlisting">
+# Import the sys module
+from time import gmtime, strftime
+
+def my_prompt():
+  ret_val = strftime("%H:%M:%S", gmtime())
+
+  if session and session.isOpen():
+    data = shell.parseUri(session.getUri())
+
+    ret_val = "%s-%s-%s-py&gt; " % (ret_val, data.dbUser, data.host)
+  else:
+    ret_val = "%s-disconnected-py&gt; " % ret_val
+
+  return ret_val
+
+
+shell.custom_prompt = my_prompt</pre><p>
+      In JavaScript <code class="literal">shell.custom_prompt()</code> could be
+      defined as:
+    </p><pre class="programlisting">
+shell.custom_prompt = function(){
+  var now = new Date();
+
+  var ret_val = now.getHours().toString()+ ":" + now.getMinutes().toString() + ":" + now.getSeconds().toString();
+
+  if (session &amp;&amp; session.isOpen()){
+    var data = shell.parseUri(session.getUri());
+
+    ret_val += "-" + data.dbUser + "-" + data.host + "-js&gt; ";
+  }
+  else
+    ret_val += "-disconnected-js&gt; ";
+
+  return ret_val;
+}</pre><p>
+      The following example demonstrates using the custom prompt
+      functions defined above in startup script. The prompts show the
+      current system time, and if a session is open the current user and
+      host:
+    </p><pre class="programlisting">
+Welcome to MySQL Shell 1.0.4 Development Preview
+
+Copyright (c) 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type '\help', '\h' or '\?' for help.
+
+Currently in JavaScript mode. Use \sql to switch to SQL mode and execute queries.
+14:34:32-disconnected-js&gt; \py
+Switching to Python mode...
+
+19:34:39-disconnected-py&gt; \connect root:@localhost
+Creating an X Session to root@localhost:33060
+No default schema selected.
+
+19:34:50-root-localhost-py&gt; \js
+Switching to JavaScript mode...
+14:34:57-root-localhost-js&gt;</pre>
+</div>
+
+</div>
+
+</div>
+<div class="copyright-footer">
+
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="group-replication.html">Prev</a></td>
+<td width="20%" align="center"><a accesskey="u" href="">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="document-store.html">Next</a></td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 17 Group Replication</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top">Chapter 19 Using MySQL as a Document Store</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
